@@ -1,0 +1,19 @@
+Bridge modbus:serial:endpoint [ port="/dev/ttyUSB0", baud=19200, id=5, stopBits="2", parity="even",dataBits=8, echo=false, encoding="rtu", flowControlIn="none", flowControlOut="none", receiveTimeoutMillis=1500 ] {
+    Bridge poller poller479 [ start=4100, length=2, refresh=479, type="input" ] {
+            Thing data valveOpen [ readStart="4100", readValueType="int16" ]
+            Thing data valveClose [ readStart="4101", readValueType="int16" ]
+    }
+    Bridge poller poller15000 [ start=11200, length=3, refresh=15000, type="input" ] {
+            Thing data outsideTemp [ readStart="11200", readValueType="int16" ]		
+            Thing data flowTemp [ readStart="11202", readValueType="int16" ]		
+    }
+    Bridge poller poller600000 [ start=11229, length=1, refresh=600000, type="input" ] {
+            Thing data setTemp [ readStart="11229", readValueType="int16" ]
+    }
+    Bridge poller poller750000 [ start=4001, length=1, refresh=750000, type="input" ] {
+            Thing data pumpOn [ readStart="4001", readValueType="int16" ]
+    }
+    Bridge poller poller900000 [ start=11099, length=1, refresh=900000, type="input" ] {
+            Thing data outsideTempAccu [ readStart="11099", readValueType="int16" ]
+    }
+}

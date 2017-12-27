@@ -1,0 +1,16 @@
+Strategies {
+    everyMinute  : "0 * * * * ?"
+    everyQuarter : "0/15 * * * * ?"
+    everyHour    : "0 0 * * * ?"
+    everyDay     : "0 0 0 * * ?"
+}
+Items {
+    heatingOutsideTemp : strategy = everyChange, everyQuarter
+    heatingFlowTemp : strategy = everyChange, everyQuarter
+    heatingSetTemp : strategy = everyChange, everyQuarter
+    heatingValveOpen : strategy = everyChange, everyQuarter
+    heatingValveClose : strategy = everyChange, everyQuarter
+    heatingOutsideTempAccu : strategy = everyChange, everyQuarter
+    heatingPumpOn : strategy = everyChange, everyQuarter
+	heatingValvePosition : strategy = everyChange, everyQuarter
+}
