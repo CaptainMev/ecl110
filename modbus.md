@@ -1,5 +1,15 @@
 # MODBUS protocol for Danfoss ECL Comfort 110
 
+## Physical
+
+The device has a RS-485 transceiver (SN75LBC184P), for which connections are brought out on the display/buttons daughterboard.
+
+Front view of the pinout:
+
+| 1   | 2      | 3      | 4            |
+|-----|--------|--------|--------------|
+| GND | D- / B | D+ / A | +5V DC ?? mA |
+
 ## Serial settings
 
 * Baud rate: 19200
