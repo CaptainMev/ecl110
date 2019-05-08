@@ -23,6 +23,19 @@ There are also six 0.1" headers on the main PCB that are probably used for servi
 * Parity: Even
 * Stop bits: 2
 
+## Function codes
+Reading can be done from both input and holding registers (FC03 and FC04). Writing can be done to single holding registers (FC06).
+
+## Openhab RTU example
+Openhab thing configuration:
+```
+Bridge modbus:serial:danfossECL110 [ port="/dev/ttyUSB-48502", baud=19200, id=5, stopBits="2", parity="even",dataBits=8, echo=false, encoding="rtu", flowControlIn="none", flowControlOut="none", receiveTimeoutMillis=1500 ] {	
+    Bridge poller manualTemperatures [ start=11179, length=1, refresh=2000, type="holding" ] {
+		Thing data setManualTemp [ readStart="11179", readValueType="int16", writeStart="11179", writeValueType="int16", writeType="holding", writeMultipleEvenWithSingleRegisterOrCoil=false ]
+	}
+}
+```
+
 ## Communication
 
 Communication is done using MODBUS RTU. The following values have been gathered from application 116/130, software version 1.06
@@ -108,7 +121,7 @@ Communication is done using MODBUS RTU. The following values have been gathered 
 | Temp. min. (flow temp. limit, min.)                     | RW         | 11176                 | 2177 | 0x0014<br/>20   |                                                                                                                                              | TODO: FORMAT                                                                                                    |
 | Temp. max. (flow temp. limit, max.)                     | RW         | 11177                 | 2178 | 0x0050<br/>80   |                                                                                                                                              | TODO: FORMAT                                                                                                    |
 | Cut-out (limit for heating cut-out)                     | RW         | 11178                 | 5179 | 0x0012<br/>18   |                                                                                                                                              | Application 130 only. TODO: FORMAT                                                                              |
-| ???                                                     | R?         | 11179                 | N/A  | 0x0015<br/>21   |                                                                                                                                              | Application 130 only. Desired room temperature?                                                                 |
+| User panel set temperature                              | RW         | 11179                 | N/A  | 0x0015<br/>21   |                                                                                                                                              | Application 130 only.                                                                 |
 | ???                                                     | R?         | 11180                 | N/A  | 0x0012<br/>18   |                                                                                                                                              | Application 130 only. Manual temperature?                                                                       |
 | Gain - max. (room temp. limitation, max.)               | RW         | 11181                 | 3182 | 0xFFD8<br/>-40  |                                                                                                                                              | Application 130 only. TODO: FORMAT                                                                              |
 | Gain - min. (room temp. limitation, min.)               | RW         | 11182                 | 3183 | 0x0000<br/>0    |                                                                                                                                              | Application 130 only. TODO: FORMAT                                                                              |
