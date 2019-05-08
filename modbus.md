@@ -6,15 +6,9 @@ The device has a RS-485 transceiver (SN75LBC184P), for which connections are bro
 
 Front view of the pinout:
 
-| 1   | 2  | 3  | 4            |
-|-----|----|----|--------------|
-| GND | D- | D+ | +5V DC ?? mA |
-
-The physical connector type is unknown.
-
-For visual diagrams, refer to 087H9216_VIJMC36K_DLG_ECL110_Link_IG.pdf page 3. The connector for the cable can be seen at https://www.youtube.com/watch?v=icmg9PiaHfs
-
-There are also six 0.1" headers on the main PCB that are probably used for servicing the device (flashing firmwares, debugging, ...). The pinout is unknown and probably uninteresting.
+| 1   | 2      | 3      | 4            |
+|-----|--------|--------|--------------|
+| GND | D- / B | D+ / A | +5V DC ?? mA |
 
 ## Serial settings
 
@@ -38,7 +32,7 @@ Bridge modbus:serial:danfossECL110 [ port="/dev/ttyUSB-48502", baud=19200, id=5,
 
 ## Communication
 
-Communication is done using MODBUS RTU. The following values have been gathered from application 116/130, software version 1.06
+Communication is done using MODBUS RTU. The following values have been gathered from application 116/130, software version 1.06/1.08
 
 | Description                                             | Read/Write | MODBUS register (PNU) | Line | Example Hex/Dec | Format                                                                                                                                       | Notes                                                                                                           |
 |---------------------------------------------------------|------------|-----------------------|------|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
@@ -111,7 +105,7 @@ Communication is done using MODBUS RTU. The following values have been gathered 
 | P1 heat T (heat demand)                                 | RW         | 11077                 | 7078 | 0x0014<br/>20   |                                                                                                                                              | TODO: FORMAT                                                                                                    |
 | Priority (priority for return temp. limitation)         | RW         | 11084                 | 4085 | 0x0000<br/>0    |                                                                                                                                              | Application 130 only. TODO: FORMAT                                                                              |
 | Standby T (standby temperature)                         | RW         | 11092                 | 7093 | 0x000A<br/>10   |                                                                                                                                              | TODO: FORMAT                                                                                                    |
-| ???                                                     | R?         | 11099                 | N/A  | 0x0010<br/>16   |                                                                                                                                              | Application 130 only.                                                                                           |
+| Accumulated Outside Temperature                         | R?         | 11099                 | N/A  | 0x0010<br/>16   |                                                                                                                                              | Application 130 only.                                                                                           |
 | Ext. (external override                                 | RW         | 11140                 | 7141 | 0x0000<br/>0    |                                                                                                                                              | TODO: FORMAT                                                                                                    |
 | Knee point                                              | RW         | 11161                 | 7162 | 0x0028<br/>40   |                                                                                                                                              | TODO: FORMAT                                                                                                    |
 | ???                                                     | R?         | 11173                 | N/A  | 0x0009<br/>9    |                                                                                                                                              | Application 116 only.                                                                                           |

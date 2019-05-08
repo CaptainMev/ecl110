@@ -1,0 +1,10 @@
+Number heatingValveOpen "Valve open [%d]" { channel="modbus:data:endpoint:poller479:valveOpen:number" }
+Number heatingValveClose "Valve close [%d]" { channel="modbus:data:endpoint:poller479:valveClose:number" }
+Number heatingOutsideTemp "Outside temp [%d]" { channel="modbus:data:endpoint:poller15000:outsideTemp:number" }
+Number heatingOutsideTempAccu "Outside temp [%d]" { channel="modbus:data:endpoint:poller900000:outsideTempAccu:number" }
+Number heatingFlowTemp "Flow temp [%d]" { channel="modbus:data:endpoint:poller15000:flowTemp:number" }
+Number heatingSetTemp "Set temp [%d]" { channel="modbus:data:endpoint:poller600000:setTemp:number" }
+Number heatingPumpOn "Pump [%d]" { channel="modbus:data:endpoint:poller750000:pumpOn:number" }
+
+Number heatingValvePosition "Valve position [%d]"
+

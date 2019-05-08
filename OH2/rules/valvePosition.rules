@@ -1,0 +1,23 @@
+rule "Startup"
+when
+    System started
+then
+    heatingValvePosition.postUpdate(0)
+end
+
+rule "Valve opens"
+when
+	Item heatingValveOpen received update 1
+then
+	heatingValvePosition.postUpdate((heatingValvePosition.state as Number) + 1)
+end
+
+rule "Valve close"
+when
+	Item heatingValveClose received update 1
+then
+	if ((heatingValvePosition.state as Number) > 0)
+	{
+		heatingValvePosition.postUpdate((heatingValvePosition.state as Number) - 1)
+	}
+end
